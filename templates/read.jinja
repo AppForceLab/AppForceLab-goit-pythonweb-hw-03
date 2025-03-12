@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <img src="/logo.png" alt="Website logo" height="40" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/message">Send message</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/read">Read messages</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-4">
+      <h2 class="mb-4">Повідомлення</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if messages %}
+          {% for timestamp, msg in messages.items() %}
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="card-title">{{ msg['username'] }}</h5>
+                <small class="text-muted">{{ timestamp }}</small>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{ msg['message'] }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-12 text-center">
+            <p class="text-muted">Поки що немає повідомлень.</p>
+          </div>
+        {% endif %}
+      </div>
+    </main>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2LntSpMfW1Idd1t8M8kMtzAc7aI6E9p2ih9P0GxUb5I6BYZ6k5bXJwUka"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
